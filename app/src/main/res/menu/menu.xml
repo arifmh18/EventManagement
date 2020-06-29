@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_menu"
+        android:title="Event"
+        android:icon="@drawable/ic_baseline_event_24"/>
+
+    <item
+        android:id="@+id/team"
+        android:title="Team"
+        android:icon="@drawable/ic_baseline_user_circle_24"/>
+
+    <item
+        android:id="@+id/acara"
+        android:title="Acara"
+        android:icon="@drawable/ic_baseline_storage_24"/>
+    <item
+        android:id="@+id/keuangan"
+        android:title="Keuangan"
+        android:icon="@drawable/ic_baseline_attach_money_24"/>
+    <item
+        android:id="@+id/peralatan"
+        android:title="Peralatan"
+        android:icon="@drawable/ic_baseline_assignment_24"/>
+
+</menu>
