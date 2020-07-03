@@ -4,19 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.EventFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="Event"
-            style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    tools:context=".Fragment.EventFragment"
+    android:background="@color/colorGrey">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEvent"
@@ -32,5 +21,16 @@
         android:layout_margin="16dp"
         app:layout_behavior="com.google.android.material.floatingactionbutton.FloatingActionButton$Behavior"
         android:src="@drawable/ic_action_add"/>
+
+    <include
+        android:id="@+id/layoutEmptyStateEvent"
+        layout="@layout/layout_empty_data_state"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/pbLoadEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
