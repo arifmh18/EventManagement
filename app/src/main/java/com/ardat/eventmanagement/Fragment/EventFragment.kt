@@ -1,5 +1,6 @@
 package com.ardat.eventmanagement.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ardat.eventmanagement.AddEventActivity
 import com.ardat.eventmanagement.R
 import com.ardat.eventmanagement.adapter.EventAdapter
 import com.ardat.eventmanagement.model.Event
@@ -50,6 +52,10 @@ class EventFragment : Fragment() {
 
         rvEvent.layoutManager = LinearLayoutManager(requireContext())
         rvEvent.adapter = adapter
+
+        fabEvent.setOnClickListener {
+            startActivity(Intent(requireActivity(), AddEventActivity::class.java))
+        }
 
         getEventData()
 
