@@ -1,11 +1,13 @@
 package com.ardat.eventmanagement.itemPeralatan
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import com.ardat.eventmanagement.Fragment.EquipmentFragment
 import com.ardat.eventmanagement.R
 import com.ardat.eventmanagement.model.ModelPeralatan
 import com.google.firebase.auth.FirebaseAuth
@@ -37,10 +39,8 @@ class UpdateActivity : AppCompatActivity() {
         cekBagian = bagian?.getText().toString()
         cekStatus = findViewById<Spinner>(R.id.newStatus).selectedItem.toString()
         btnUpdate?.setOnClickListener {
-            if (cekNamaAlat!!.isEmpty()||cekJumlahUnit!!.isEmpty()||cekBagian!!.isEmpty()){
-                if (cekStatus!! == "pilih"){
+            if (cekNamaAlat!!.isEmpty()||cekJumlahUnit!!.isEmpty()||cekBagian!!.isEmpty()||cekStatus!! == "pilih"){
                     Toast.makeText(this,"data tidak boleh ada yang kosong",Toast.LENGTH_SHORT).show()
-                }
             }else {
                 updateData(cekNamaAlat!!, cekJumlahUnit!!, cekBagian!!, cekStatus!!)
             }
@@ -55,7 +55,9 @@ class UpdateActivity : AppCompatActivity() {
         database!!.child(getUserID).child("Peralatan")
             .child(getKey).setValue(temanBaru)
             .addOnCompleteListener {
+                startActivity(Intent(this,EquipmentFragment::class.java))
                 finish()
+
             }
     }
 
