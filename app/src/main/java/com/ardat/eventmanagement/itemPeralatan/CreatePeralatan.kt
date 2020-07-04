@@ -19,6 +19,7 @@ class CreatePeralatan : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_peralatan)
+        btnInsert.setOnClickListener {
         when {
             edtNamaAlat.text.isEmpty() -> edtNamaAlat.error = "required"
             edtJumlahUnit.text.isEmpty() -> edtNamaAlat.error = "required"
@@ -29,14 +30,14 @@ class CreatePeralatan : AppCompatActivity() {
             ).show()
             edtBagian.text.isEmpty() -> edtBagian.error = "required"
             else -> {
-                btnInsert.setOnClickListener {
-                    insertPeralatan(
-                        edtNamaAlat.text.toString(),
-                        edtJumlahUnit.text.toString(),
-                        edtStatus.selectedItem.toString(),
-                        edtBagian.text.toString()
-                    )
-                }
+
+                insertPeralatan(
+                    edtNamaAlat.text.toString(),
+                    edtJumlahUnit.text.toString(),
+                    edtStatus.selectedItem.toString(),
+                    edtBagian.text.toString()
+                )
+            }
             }
         }
     }

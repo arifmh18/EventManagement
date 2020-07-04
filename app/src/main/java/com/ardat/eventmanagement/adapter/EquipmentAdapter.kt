@@ -48,20 +48,23 @@ class EquipmentAdapter(private var mctx : Context,private var list : List<ModelP
                 bundle.putString("jumlahUnit",list.get(position).jumlahUnit)
                 bundle.putString("status",list.get(position).status)
                 bundle.putString("bagian",list.get(position).bagian)
+                bundle.putString("idKey",list.get(position).key)
                 var intent = Intent(it.context,UpdateActivity::class.java)
                 intent.putExtras(bundle)
                 mctx.startActivity(intent)
             }
-            auth = FirebaseAuth.getInstance()
-            ref = FirebaseDatabase.getInstance().getReference()
-            val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
-            if (ref!=null){
-            ref.child(getUserID).child("Peralatan").child(list.get(position)?.key.toString()).removeValue().addOnSuccessListener {view->
+            view.btnHapus.setOnClickListener {
+                auth = FirebaseAuth.getInstance()
+                ref = FirebaseDatabase.getInstance().getReference()
+                val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
+                if (ref!=null){
+                    ref.child(getUserID).child("Peralatan").child(list.get(position)?.key.toString()).removeValue().addOnSuccessListener {view->
 
-                Toast.makeText(it.context,"deleted",Toast.LENGTH_SHORT).show()
-            }
-            }else{
-                Toast.makeText(it.context,list.get(position).key.toString(),Toast.LENGTH_SHORT).show()
+                        Toast.makeText(it.context,"deleted",Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    Toast.makeText(it.context,list.get(position).key.toString(),Toast.LENGTH_SHORT).show()
+                }
             }
             builder.create().show()
             true
