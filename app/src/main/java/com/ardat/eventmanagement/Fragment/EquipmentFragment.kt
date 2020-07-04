@@ -50,7 +50,7 @@ class EquipmentFragment : Fragment(), EquipmentAdapter.dataListener {
             })
 
 
-        view.insertData.setOnClickListener {
+        view.judul.setOnClickListener {
             startActivity(Intent(this.context,CreatePeralatan::class.java))
         }
 

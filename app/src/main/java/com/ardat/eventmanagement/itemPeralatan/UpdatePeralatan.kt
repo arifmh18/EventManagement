@@ -55,10 +55,6 @@ class UpdatePeralatan : AppCompatActivity() {
                 ?.child(getKey)?.setValue(temanBaru)
                 ?.addOnCompleteListener {
                     viewModel.updateData(temanBaru)
-//                    Toast.makeText(this,cekNamaAlat,Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this,cekBagian,Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this,cekJumlahUnit,Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this,cekStatus,Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,MainActivity::class.java))
                     finish()
                 }
