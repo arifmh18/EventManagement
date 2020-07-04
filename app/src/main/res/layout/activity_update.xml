@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".itemPeralatan.UpdateActivity">
+    tools:context=".itemPeralatan.UpdatePeralatan">
     <EditText
         android:id="@+id/newNama"
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:hint="Bagian"
         android:inputType="textPersonName" />
     <Button
-        android:id="@+id/update"
+        android:id="@+id/updateData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update" />

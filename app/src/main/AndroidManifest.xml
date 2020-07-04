@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".itemPeralatan.UpdateActivity"></activity>
+        <activity android:name=".itemPeralatan.UpdatePeralatan"></activity>
         <activity android:name=".itemPeralatan.CreatePeralatan" />
         <activity
             android:name=".LoginActivity"
