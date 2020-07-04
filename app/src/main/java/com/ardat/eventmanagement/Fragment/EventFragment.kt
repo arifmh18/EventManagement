@@ -54,7 +54,9 @@ class EventFragment : Fragment() {
         rvEvent.adapter = adapter
 
         fabEvent.setOnClickListener {
-            startActivity(Intent(requireActivity(), AddEventActivity::class.java))
+            val intent = Intent(requireActivity(), AddEventActivity::class.java)
+            intent.putExtra(AddEventActivity.OPERATION_TYPE, "INSERT")
+            startActivity(intent)
         }
 
         getEventData()
@@ -63,10 +65,15 @@ class EventFragment : Fragment() {
 
     private fun getEventData() {
 
+        layoutEmptyStateEvent.visibility = View.GONE
         pbLoadEvent.visibility = View.VISIBLE
+
         databaseReference.addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    layoutEmptyStateEvent.visibility = View.GONE
+                    pbLoadEvent.visibility = View.VISIBLE
+
                     eventList.clear()
                     for (data in dataSnapshot.children){
 

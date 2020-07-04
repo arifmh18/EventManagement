@@ -18,8 +18,16 @@ class AddEventActivity : AppCompatActivity() {
     private val database = FirebaseDatabase.getInstance()
     private lateinit var databaseReference: DatabaseReference
 
+    private var operationType = ""
+    private var updateUidEvent = ""
+
     companion object {
         var TAG = AddEventActivity::class.java.name
+        var EVENT_NAME = "EVENT_NAME"
+        var EVENT_DATE = "EVENT_DATE"
+        var EVENT_INFO = "EVENT_INFO"
+        var EVENT_UID = "EVENT_UID"
+        var OPERATION_TYPE = "OP_TYPE"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +45,21 @@ class AddEventActivity : AppCompatActivity() {
 
         databaseReference = database.getReference("event")
 
+        val intent = intent
+        operationType = intent.getStringExtra(OPERATION_TYPE)!!
+
+        if(operationType == "UPDATE"){
+            val eventName = intent.getStringExtra(EVENT_NAME)
+            val eventDate = intent.getStringExtra(EVENT_DATE)
+            val eventInfo = intent.getStringExtra(EVENT_INFO)
+            updateUidEvent = intent.getStringExtra(EVENT_UID)!!
+
+            supportActionBar?.title = "Edit Event"
+            btnAddEvent.text = "Edit Event"
+
+            setToTextInput(eventName, eventDate, eventInfo)
+        }
+
         btnAddEvent.setOnClickListener {
             checkEventForm()
         }
@@ -49,6 +72,12 @@ class AddEventActivity : AppCompatActivity() {
             showDatePickDialog()
         }
 
+    }
+
+    private fun setToTextInput(eventName: String?, eventDate: String?, eventInfo: String?) {
+        tieEventName.setText(eventName)
+        tieEventDate.setText(eventDate)
+        tieEventInfo.setText(eventInfo)
     }
 
     private fun showDatePickDialog() {
@@ -88,9 +117,25 @@ class AddEventActivity : AppCompatActivity() {
             eventName.isEmpty() -> tilEventName.error = "Mohon isikan nama event !"
             eventDate.isEmpty() -> tilEventDate.error = "Pilih tanggal event !"
             eventInfo.isEmpty() -> tilEventInfo.error = "Mohon isikan informasi event !"
-            else -> addEvent(eventName, eventDate, eventInfo)
+            else -> 
+                when (operationType){
+                    "INSERT" -> addEvent(eventName, eventDate, eventInfo)
+                    "UPDATE" -> updateEvent(eventName, eventDate, eventInfo)
+                }
         }
 
+    }
+
+    private fun updateEvent(eventName: String, eventDate: String, eventInfo: String) {
+        val event = Event(eventName, eventDate, eventInfo, "")
+        databaseReference.child(updateUidEvent).setValue(event)
+            .addOnCompleteListener {
+                showToast(this, "Berhasil edit event")
+                finish()
+            }
+            .addOnFailureListener {
+                Log.e(TAG, "onFailureListener : "+it.message)
+            }
     }
 
     private fun addEvent(eventName: String, eventDate: String, eventInfo: String) {

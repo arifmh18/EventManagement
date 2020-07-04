@@ -1,12 +1,14 @@
 package com.ardat.eventmanagement.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.ardat.eventmanagement.AddEventActivity
 import com.ardat.eventmanagement.R
 import com.ardat.eventmanagement.model.Event
 import com.ardat.eventmanagement.utils.showToast
@@ -51,7 +53,15 @@ class EventAdapter (private val context: Context) : RecyclerView.Adapter<EventAd
                 popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
                     return@OnMenuItemClickListener when (it.itemId){
                         R.id.menuEventUpdate -> {
-                            Log.d("event item", "delete with uid : "+item.eventUid)
+
+                            val intent = Intent(containerView.context, AddEventActivity::class.java)
+                            intent.putExtra(AddEventActivity.EVENT_NAME, item.eventName)
+                            intent.putExtra(AddEventActivity.EVENT_DATE, item.eventDate)
+                            intent.putExtra(AddEventActivity.EVENT_INFO, item.eventInfo)
+                            intent.putExtra(AddEventActivity.EVENT_UID, item.eventUid)
+                            intent.putExtra(AddEventActivity.OPERATION_TYPE, "UPDATE")
+                            containerView.context.startActivity(intent)
+
                             true
                         }
                         R.id.menuEventDelete -> {
@@ -59,6 +69,9 @@ class EventAdapter (private val context: Context) : RecyclerView.Adapter<EventAd
                                 .addOnSuccessListener {
                                     showToast(containerView.context, "Berhasil hapus event")
 
+                                }
+                                .addOnFailureListener {
+                                    Log.e("event item", "onFailureListener : "+it.message)
                                 }
                             true
                         }
