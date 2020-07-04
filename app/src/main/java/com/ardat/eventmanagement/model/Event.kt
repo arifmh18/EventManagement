@@ -5,4 +5,6 @@ data class Event(
     var eventDate : String,
     var eventInfo : String,
     var eventUid : String
-)
+){
+    constructor(): this("", "", "", "")
+}

@@ -36,6 +36,7 @@ class EventAdapter (private val context: Context) : RecyclerView.Adapter<EventAd
         fun bindItem(item : Event){
             tvEventNameItemEvent.text = item.eventName
             tvEventInfoEventItem.text = item.eventInfo
+            tvEventDateEventItem.text = item.eventDate
         }
     }
 
