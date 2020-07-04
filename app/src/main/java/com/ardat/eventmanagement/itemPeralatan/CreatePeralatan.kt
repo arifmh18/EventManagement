@@ -41,10 +41,11 @@ class CreatePeralatan : AppCompatActivity() {
         }
     }
 
-    private fun insertPeralatan(nama: String, jumlah: String, status: String, bagian: String) {
+     fun insertPeralatan(nama: String, jumlah: String, status: String, bagian: String) {
         var userId = auth?.getCurrentUser()?.getUid().toString()
-        var modelPeralatan : ModelPeralatan = ModelPeralatan(nama,jumlah,status,bagian)
-        ref.child(userId).child("Peralatan").push().setValue(modelPeralatan).addOnCompleteListener {
+        var id = ref.push().key.toString()
+        var modelPeralatan : ModelPeralatan = ModelPeralatan(nama,jumlah,status,bagian,id)
+        ref.child(userId).child("Peralatan").child(id).setValue(modelPeralatan).addOnCompleteListener {
             Toast.makeText(this,"berhasil",Toast.LENGTH_SHORT).show()
             startActivity(Intent(this,EquipmentFragment::class.java))
         }

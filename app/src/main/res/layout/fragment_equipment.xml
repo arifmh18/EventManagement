@@ -16,6 +16,7 @@
             android:background="@color/colorPrimary"
             android:layout_height="140sp"/>
         <androidx.cardview.widget.CardView
+            android:id="@+id/insertData"
             android:layout_marginTop="100sp"
             android:layout_width="300dp"
             app:cardCornerRadius="10sp"
