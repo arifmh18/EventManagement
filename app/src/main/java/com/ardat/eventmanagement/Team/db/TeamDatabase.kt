@@ -27,7 +27,7 @@ public abstract class TeamDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TeamDatabase::class.java,
-                    "db.team"
+                    "db_team"
                 ).
                 build()
                 INSTANCE = instance

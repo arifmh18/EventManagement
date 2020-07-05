@@ -8,6 +8,7 @@ import com.ardat.eventmanagement.Team.model.TeamModel
 interface TeamDao {
     @Query("SELECT * from tb_team")
     fun getAllTeam(): LiveData<List<TeamModel>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(team: TeamModel)
 
