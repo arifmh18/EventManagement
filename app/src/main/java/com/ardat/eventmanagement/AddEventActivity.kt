@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 import com.ardat.eventmanagement.model.Event
 import com.ardat.eventmanagement.utils.showToast
+import com.ardat.eventmanagement.viewmodel.EventViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_add_event.*
@@ -17,6 +19,8 @@ class AddEventActivity : AppCompatActivity() {
 
     private val database = FirebaseDatabase.getInstance()
     private lateinit var databaseReference: DatabaseReference
+
+    private lateinit var eventViewModel: EventViewModel
 
     private var operationType = ""
     private var updateUidEvent = ""
@@ -42,6 +46,8 @@ class AddEventActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Tambah Event"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        eventViewModel = ViewModelProvider(this).get(EventViewModel::class.java)
 
         databaseReference = database.getReference("event")
 
@@ -127,7 +133,12 @@ class AddEventActivity : AppCompatActivity() {
     }
 
     private fun updateEvent(eventName: String, eventDate: String, eventInfo: String) {
-        val event = Event(eventName, eventDate, eventInfo, "")
+        val event = Event(
+            eventName,
+            eventDate,
+            eventInfo,
+            ""
+        )
         databaseReference.child(updateUidEvent).setValue(event)
             .addOnCompleteListener {
                 showToast(this, "Berhasil edit event")
@@ -139,9 +150,23 @@ class AddEventActivity : AppCompatActivity() {
     }
 
     private fun addEvent(eventName: String, eventDate: String, eventInfo: String) {
-        val event = Event(eventName, eventDate, eventInfo, "")
-        databaseReference.push().setValue(event)
+        val event = Event(
+            eventName,
+            eventDate,
+            eventInfo,
+            ""
+        )
+        val key = databaseReference.push().key.toString()
+        databaseReference.child(key).setValue(event)
             .addOnCompleteListener {
+//                eventViewModel.insert(
+//                    Event(
+//                        eventName,
+//                        eventDate,
+//                        eventInfo,
+//                        key
+//                    )
+//                )
                 showToast(this, "Berhasil menambah event !")
                 finish()
             }
