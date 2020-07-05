@@ -33,31 +33,35 @@ class UpdatePeralatan : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update)
-        viewModel.init(this)
-        getSupportActionBar()?.setTitle("Update Data Peralatan")
-        getdata()
 
+        getdata()
         updateData.setOnClickListener {
+            viewModel.init(this)
             namaAlat = findViewById(R.id.newNama)
             bagian = findViewById(R.id.newBagian)
             btnUpdate = findViewById(R.id.updateData)
-            cekNamaAlat =newNama.getText().toString()
+            cekNamaAlat = newNama.getText().toString()
             cekJumlahUnit = newJumlahUnit.getText().toString()
             cekBagian = newBagian.getText().toString()
             cekStatus = newStatus.selectedItem.toString()
             val getKey: String = getIntent().getStringExtra("idKey").toString()
-            Toast.makeText(this,getKey,Toast.LENGTH_SHORT).show()
-            val temanBaru = ModelPeralatan(cekNamaAlat!!, cekJumlahUnit!!,cekStatus!!, cekBagian!!,
-                 getKey)
+
+            Toast.makeText(this, getKey, Toast.LENGTH_SHORT).show()
+            val temanBaru = ModelPeralatan(
+                ubahHurufBesar(cekNamaAlat!!),
+                cekJumlahUnit!!,
+                ubahHurufBesar(cekStatus!!),
+                ubahHurufBesar(cekBagian!!),
+                getKey
+            )
             val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
             database = FirebaseDatabase.getInstance().getReference()
-            database?.child(getUserID)?.child("Peralatan")
-                ?.child(getKey)?.setValue(temanBaru)
-                ?.addOnCompleteListener {
-                    viewModel.updateData(temanBaru)
-                    startActivity(Intent(this,MainActivity::class.java))
-                    finish()
-                }
+                    database!!.child(getUserID).child("Peralatan").child(getKey).setValue(temanBaru)
+                        .addOnCompleteListener {
+                            viewModel.updateData(temanBaru)
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
         }
     }
     private fun getdata(){
@@ -70,5 +74,26 @@ class UpdatePeralatan : AppCompatActivity() {
         newJumlahUnit.setText(getJumlahUnit)
         bagian?.setText(getBagian)
     }
+    fun ubahHurufBesar(kalimat : String):String{
+        if(kalimat.indexOf(" ")==-1){
+            var ubahKeHurufBesarAwalKata = kalimat.substring(0,1).toUpperCase()
+            var kataSetelahBesar1 = kalimat.substring(1,kalimat.length)
+            var kata1 = ubahKeHurufBesarAwalKata+kataSetelahBesar1
+            return kata1
+        }else {
+            var ambilHurufTerakhir = kalimat.indexOf(" ") + 1
+            var ambilHurufTerakhir2 = kalimat.indexOf(" ") + 2
+            var ubahKeHurufBesarAwalKata = kalimat.substring(0, 1).toUpperCase()
+            var ubahKeHurufBesarSetelahSpasi =
+                kalimat.substring(ambilHurufTerakhir, ambilHurufTerakhir2).toUpperCase()
+            var kataSetelahBesar1 = kalimat.substring(1, kalimat.indexOf(" "))
+            var kataSetelahBesar2 = kalimat.substring(kalimat.indexOf(" ") + 2, kalimat.length)
+            var kata1 = ubahKeHurufBesarAwalKata + kataSetelahBesar1
+            var kata2 = ubahKeHurufBesarSetelahSpasi + kataSetelahBesar2
+            var kalimatJadi = kata1 + " " + kata2
+            return kalimatJadi
+        }
+    }
 
 }
+

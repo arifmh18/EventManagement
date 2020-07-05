@@ -35,6 +35,7 @@
         android:hint="Nama alat"
         android:id="@+id/edtNamaAlat"
         android:layout_width="match_parent"
+        android:inputType="textCapWords"
         android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/edtJumlahUnit"
@@ -50,6 +51,7 @@
     <EditText
         android:id="@+id/edtBagian"
         android:hint="Bagian"
+        android:inputType="textCapWords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

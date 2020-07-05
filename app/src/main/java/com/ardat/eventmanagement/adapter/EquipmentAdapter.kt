@@ -59,7 +59,6 @@ class EquipmentAdapter(private var mctx : Context,private var list : List<ModelP
                         val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
                         if (ref!=null){
                             ref.child(getUserID).child("Peralatan").child(list.get(position)?.key.toString()).removeValue().addOnSuccessListener {view->
-
                                 Toast.makeText(it.context,"deleted",Toast.LENGTH_SHORT).show()
                             }
                         }else{

@@ -50,11 +50,31 @@ class CreatePeralatan : AppCompatActivity() {
 
      fun insertPeralatan(nama: String, jumlah: String, status: String, bagian: String) {
         var userId = auth?.getCurrentUser()?.getUid().toString()
-        var modelPeralatan= ModelPeralatan(nama,jumlah,status,bagian,"")
+        var modelPeralatan= ModelPeralatan( nama,jumlah,ubahHurufBesar(status),bagian,"")
         ref.child(userId).child("Peralatan").push().setValue(modelPeralatan).addOnCompleteListener {
             viewModel.addData(modelPeralatan)
             Toast.makeText(this,"berhasil",Toast.LENGTH_SHORT).show()
             startActivity(Intent(this,MainActivity::class.java))
+        }
+    }
+    fun ubahHurufBesar(kalimat : String):String{
+        if(kalimat.indexOf(" ")==-1){
+            var ubahKeHurufBesarAwalKata = kalimat.substring(0,1).toUpperCase()
+            var kataSetelahBesar1 = kalimat.substring(1,kalimat.length)
+            var kata1 = ubahKeHurufBesarAwalKata+kataSetelahBesar1
+            return kata1
+        }else {
+            var ambilHurufTerakhir = kalimat.indexOf(" ") + 1
+            var ambilHurufTerakhir2 = kalimat.indexOf(" ") + 2
+            var ubahKeHurufBesarAwalKata = kalimat.substring(0, 1).toUpperCase()
+            var ubahKeHurufBesarSetelahSpasi =
+                kalimat.substring(ambilHurufTerakhir, ambilHurufTerakhir2).toUpperCase()
+            var kataSetelahBesar1 = kalimat.substring(1, kalimat.indexOf(" "))
+            var kataSetelahBesar2 = kalimat.substring(kalimat.indexOf(" ") + 2, kalimat.length)
+            var kata1 = ubahKeHurufBesarAwalKata + kataSetelahBesar1
+            var kata2 = ubahKeHurufBesarSetelahSpasi + kataSetelahBesar2
+            var kalimatJadi = kata1 + " " + kata2
+            return kalimatJadi
         }
     }
 }
