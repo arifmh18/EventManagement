@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.ardat.eventmanagement.AddEventActivity
+import com.ardat.eventmanagement.DetailEventActivity
 import com.ardat.eventmanagement.R
 import com.ardat.eventmanagement.model.Event
 import com.ardat.eventmanagement.utils.showToast
@@ -46,6 +47,14 @@ class EventAdapter (private val context: Context) : RecyclerView.Adapter<EventAd
 
             val database = FirebaseDatabase.getInstance()
             val databaseReference = database.getReference("event")
+
+            containerView.setOnClickListener {
+                val intent = Intent(containerView.context, DetailEventActivity::class.java)
+                intent.putExtra(DetailEventActivity.EVENT_NAME, item.eventName)
+                intent.putExtra(DetailEventActivity.EVENT_DATE, item.eventDate)
+                intent.putExtra(DetailEventActivity.EVENT_INFO, item.eventInfo)
+                containerView.context.startActivity(intent)
+            }
 
             ivMenuItemEvent.setOnClickListener {
                 val popupMenu = PopupMenu(containerView.context, ivMenuItemEvent)
