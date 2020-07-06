@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "293488613626-064u511gojridm3rsv5vhh6078a1k0ou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ardat.eventmanagement",
+            "certificate_hash": "7a9d0fb2171bd4321cdd62ef7b8064b1f973e130"
+          }
+        },
+        {
           "client_id": "293488613626-qe0ha8fd6vvsumqr0sv4g140fk3ad9ge.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
