@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgDark"
+    tools:context=".itemPeralatan.CreatePeralatan">
+    <TextView
+    android:id="@+id/judul"
+    android:layout_marginTop="40sp"
+    android:layout_marginLeft="20sp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Insert Equipment"
+    android:textColor="@color/bgLight"
+    android:textSize="40sp"
+    android:fontFamily="@font/gilroy_bold"
+    android:textStyle="bold"
+    />
+<androidx.cardview.widget.CardView
+    android:layout_margin="10sp"
+    app:cardCornerRadius="10sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+
+    android:background="@color/bgLight"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10sp"
+    android:layout_height="wrap_content">
+    <EditText
+        android:hint="Nama alat"
+        android:id="@+id/edtNamaAlat"
+        android:layout_width="match_parent"
+        android:inputType="textCapWords"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/edtJumlahUnit"
+        android:hint="jumlah unit"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Spinner
+        android:id="@+id/edtStatus"
+        android:entries="@array/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/edtBagian"
+        android:hint="Bagian"
+        android:inputType="textCapWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+</androidx.cardview.widget.CardView>
+    <Button
+        android:layout_marginLeft="10sp"
+        android:id="@+id/btnInsert"
+        android:text="Insert"
+        android:background="@color/colorAccent"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/gilroy_bold"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

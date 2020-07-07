@@ -14,8 +14,10 @@
         <activity android:name=".AddEventActivity" />
 
         <activity android:name=".Team.UpdateTeamActivity"></activity>
-        <activity android:name=".Team.AddTeamActivity" />
+        <activity android:name=".Team.AddTeamActivity" ></activity>
 
+        <activity android:name=".itemPeralatan.UpdatePeralatan"></activity>
+        <activity android:name=".itemPeralatan.CreatePeralatan" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
@@ -27,6 +29,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".MainActivity"

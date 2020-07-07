@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgPrimary"
+    tools:context=".itemPeralatan.UpdatePeralatan">
+    <TextView
+        android:id="@+id/judul"
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Equipment"
+        android:textColor="@color/bgLight"
+        android:textSize="40sp"
+        android:fontFamily="@font/gilroy_bold"
+        android:textStyle="bold"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10sp"
+        app:cardCornerRadius="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:background="@color/bgLight"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:padding="10sp"
+            android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/newNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nama Alat Baru"
+        android:inputType="textCapWords" />
+    <EditText
+        android:id="@+id/newJumlahUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="jumlah unit"
+        android:inputType="number" />
+    <Spinner
+        android:id="@+id/newStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:entries="@array/status" />
+    <EditText
+        android:id="@+id/newBagian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Bagian"
+        android:inputType="textCapWords" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/updateData"
+        android:layout_marginLeft="10sp"
+        android:text="Update"
+        android:background="@color/colorAccent"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/gilroy_bold"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>

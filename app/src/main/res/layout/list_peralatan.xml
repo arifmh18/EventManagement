@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="10sp"
+    android:padding="5sp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10sp"
+    android:layout_height="wrap_content">
+
+  <LinearLayout
+      android:id="@+id/alertShow"
+      android:background="@color/bgLight"
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:orientation="horizontal"
+          android:layout_height="wrap_content">
+      <TextView
+          android:fontFamily="@font/gilroy_bold"
+          android:layout_marginLeft="5sp"
+          android:id="@+id/namaAlat"
+          android:layout_width="wrap_content"
+          android:text="hendra maulidan"
+          android:textSize="20sp"
+          android:textColor="@color/bgPrimary"
+          android:layout_height="wrap_content"/>
+      <TextView
+          android:id="@+id/jumlahUnit"
+          android:gravity="right"
+          android:textColor="@color/bgPrimary"
+          android:layout_marginLeft="30sp"
+          android:layout_marginRight="30sp"
+          android:text="100"
+          android:layout_width="match_parent"
+          android:fontFamily="@font/gilroy_light"
+          android:layout_height="wrap_content"/>
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:orientation="horizontal"
+          android:layout_height="wrap_content">
+      <TextView
+          android:id="@+id/status"
+          android:textSize="15sp"
+          android:text="milik sendiri"
+          android:layout_marginLeft="5sp"
+          android:fontFamily="@font/gilroy_bold"
+          android:layout_width="wrap_content"
+          android:textStyle="normal"
+          android:textColor="@color/bgSeconday"
+          android:layout_height="wrap_content"/>
+          <TextView
+              android:layout_marginLeft="5sp"
+              android:layout_marginRight="5sp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="/"
+              />
+      <TextView
+          android:id="@+id/bagian"
+          android:textSize="14sp"
+          android:text="bagian mc"
+          android:layout_marginLeft="5sp"
+          android:fontFamily="@font/gilroy_bold"
+          android:layout_width="wrap_content"
+          android:textStyle="normal"
+          android:textColor="@color/bgSeconday"
+          android:layout_height="wrap_content"
+          />
+      </LinearLayout>
+  </LinearLayout>
+
+</androidx.cardview.widget.CardView>
